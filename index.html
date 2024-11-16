@@ -103,9 +103,9 @@
         }
 
         .img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 50%;
+            height: 50%;
+            object-fit:scale-down;
             background: radial-gradient(
                 circle,
                 rgba(var(--color-card), 0.2) 0%,
@@ -115,26 +115,12 @@
             transition: transform 0.3s ease;
         }
 
-        .title {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .card:hover .title {
-            opacity: 1;
-        }
 
         #categories {
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            margin-top:-20px;
         }
 
         .category-container {
@@ -177,8 +163,8 @@
             bottom: 0;
             background: linear-gradient(
                 45deg,
-                rgba(var(--pastel-pink), 0.5),
-                rgba(var(--pastel-blue), 0.5),
+                rgba(var(--pastel-pink), 0.9),
+                rgba(var(--pastel-peach), 0.5),
                 rgba(var(--pastel-green), 0.5),
                 rgba(var(--pastel-yellow), 0.5)
             );
@@ -231,14 +217,25 @@
             }
 
             .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            }
+        }
+        @media (max-width: 1200px) {
+            .image-grid {
                 grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+        @media (max-width: 1449px) {
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Kiranmayee Abbireddy's Digital Art Gallery</h1>
+        <h5 style="font-family: 'Brush Script MT', cursive; font-size:18px; font-weight:200;">Kiranmayee Abbireddy's</h5>
+        <h1 style="margin-top:-40px; margin-bottom:-20px; letter-spacing:5px;">Digital Art Gallery</h1>
         <p>Water Color Themed Digital Art</p>
     </header>
 
@@ -246,44 +243,44 @@
         <div class="wrapper">
             <div class="inner">
                 <div class="card" style="--index: 0; --color-card: var(--pastel-pink);">
-                    <div class="img"></div>
-                    <h3 class="title">Rose</h3>
+                    <div class="img"><img src="static/1.jpg"></div>
+                    
                 </div>
                 <div class="card" style="--index: 1; --color-card: var(--pastel-blue);">
-                    <div class="img"></div>
-                    <h3 class="title">Tulips</h3>
+                    <div class="img"><img src="static/2.jpg"></div>
+                    
                 </div>
                 <div class="card" style="--index: 2; --color-card: var(--pastel-green);">
-                    <div class="img"></div>
-                    <h3 class="title">Birds & Animals</h3>
+                    <div class="img"><img src="static/3.jpg"></div>
+                  
                 </div>
                 <div class="card" style="--index: 3; --color-card: var(--pastel-yellow);">
-                    <div class="img"></div>
-                    <h3 class="title">Sunflowers</h3>
+                    <div class="img"><img src="static/4.jpg"></div>
+                   
                 </div>
                 <div class="card" style="--index: 4; --color-card: var(--pastel-purple);">
-                    <div class="img"></div>
-                    <h3 class="title">Lavenders</h3>
+                    <div class="img"><img src="static/5.jpg"></div>
+                   
                 </div>
                 <div class="card" style="--index: 5; --color-card: var(--pastel-peach);">
-                    <div class="img"></div>
-                    <h3 class="title">Dahlias</h3>
+                    <div class="img"><img src="static/6.jpg"></div>
+                    
                 </div>
                 <div class="card" style="--index: 6; --color-card: var(--pastel-mint);">
-                    <div class="img"></div>
-                    <h3 class="title">Dandelions</h3>
+                    <div class="img"><img src="static/7.jpg"></div>
+                    
                 </div>
                 <div class="card" style="--index: 7; --color-card: var(--pastel-lavender);">
-                    <div class="img"></div>
-                    <h3 class="title">Lotus</h3>
+                    <div class="img"><img src="static/8.jpg"></div>
+                    
                 </div>
                 <div class="card" style="--index: 8; --color-card: var(--pastel-coral);">
-                    <div class="img"></div>
-                    <h3 class="title">Lilies</h3>
+                    <div class="img"><img src="static/9.jpg"></div>
+                    
                 </div>
                 <div class="card" style="--index: 9; --color-card: var(--pastel-cyan);">
-                    <div class="img"></div>
-                    <h3 class="title">Sakuras</h3>
+                    <div class="img"><img src="static/10.jpg"></div>
+                    
                 </div>
             </div>
         </div>
@@ -294,27 +291,27 @@
             <h2 class="category-title">Roses</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Rose1" alt="Rose 1">
+                    <img src="static/rose1.jpg" alt="Rose 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Rose2" alt="Rose 2">
+                    <img src="static/rose2.jpg" alt="Rose 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Rose3" alt="Rose 3">
+                    <img src="static/rose3.webp" alt="Rose 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Rose4" alt="Rose 4">
+                    <img src="static/rose4.jpg" alt="Rose 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Rose5" alt="Rose 5">
+                    <img src="static/rose5.jpg" alt="Rose 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Rose6" alt="Rose 6">
+                    <img src="static/rose6.jpg" alt="Rose 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -324,27 +321,27 @@
             <h2 class="category-title">Tulips</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Tulip1" alt="Tulip 1">
+                    <img src="static/tulip1.jpg" alt="Tulip 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Tulip2" alt="Tulip 2">
+                    <img src="static/tulip2.jpg" alt="Tulip 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Tulip3" alt="Tulip 3">
+                    <img src="static/tulip3.jpg" alt="Tulip 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Tulip4" alt="Tulip 4">
+                    <img src="static/tulip4.webp" alt="Tulip 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Tulip5" alt="Tulip 5">
+                    <img src="static/tulip5.jpg" alt="Tulip 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Tulip6" alt="Tulip 6">
+                    <img src="static/tulip6.jpg" alt="Tulip 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -354,27 +351,27 @@
             <h2 class="category-title">Birds & Animals</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Bird1" alt="Bird 1">
+                    <img src="static/bird1.jpg" alt="Bird 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Animal1" alt="Animal 1">
+                    <img src="static/animal1.jpg" alt="Animal 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Bird2" alt="Bird 2">
+                    <img src="static/bird2.jpg" alt="Bird 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Animal2" alt="Animal 2">
+                    <img src="static/animal2.jpg" alt="Animal 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Bird3" alt="Bird 3">
+                    <img src="static/bird3.jpg" alt="Bird 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Animal3" alt="Animal 3">
+                    <img src="static/animal3.jpg" alt="Animal 3">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -384,27 +381,27 @@
             <h2 class="category-title">Sunflowers</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower1" alt="Sunflower 1">
+                    <img src="static/sunflower1.jpg" alt="Sunflower 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower2" alt="Sunflower 2">
+                    <img src="static/sunflower2.jpg" alt="Sunflower 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower3" alt="Sunflower 3">
+                    <img src="static/sunflower3.jpg" alt="Sunflower 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower4" alt="Sunflower 4">
+                    <img src="static/sunflower4.jpg" alt="Sunflower 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower5" alt="Sunflower 5">
+                    <img src="static/sunflower5.jpg" alt="Sunflower 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower6" alt="Sunflower 6">
+                    <img src="static/sunflower6.jpg" alt="Sunflower 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -414,27 +411,27 @@
             <h2 class="category-title">Lavenders</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lavender1" alt="Lavender 1">
+                    <img src="static/lavender1.webp" alt="Lavender 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lavender2" alt="Lavender 2">
+                    <img src="static/lavender2.jpg" alt="Lavender 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lavender3" alt="Lavender 3">
+                    <img src="static/lavender3.jpg" alt="Lavender 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lavender4" alt="Lavender 4">
+                    <img src="static/lavender4.jpg" alt="Lavender 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lavender5" alt="Lavender 5">
+                    <img src="static/lavender5.webp" alt="Lavender 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lavender6" alt="Lavender 6">
+                    <img src="static/lavender6.webp" alt="Lavender 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -444,27 +441,27 @@
             <h2 class="category-title">Dahlias</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia1" alt="Dahlia 1">
+                    <img src="static/dahlia1.jpg" alt="Dahlia 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia2" alt="Dahlia 2">
+                    <img src="static/dahlia2.jpg" alt="Dahlia 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia3" alt="Dahlia 3">
+                    <img src="static/dahlia3.jpg" alt="Dahlia 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia4" alt="Dahlia 4">
+                    <img src="static/dahlia4.webp" alt="Dahlia 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia5" alt="Dahlia 5">
+                    <img src="static/dahlia5.jpg" alt="Dahlia 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia6" alt="Dahlia 6">
+                    <img src="static/dahlia6.jpg" alt="Dahlia 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -474,27 +471,27 @@
             <h2 class="category-title">Dandelions</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion1" alt="Dandelion 1">
+                    <img src="static/dandelion1.jpg" alt="Dandelion 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion2" alt="Dandelion 2">
+                    <img src="static/dandelion2.jpg" alt="Dandelion 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion3" alt="Dandelion 3">
+                    <img src="static/dandelion3.jpg" alt="Dandelion 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion4" alt="Dandelion 4">
+                    <img src="static/dandelion4.jpg" alt="Dandelion 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion5" alt="Dandelion 5">
+                    <img src="static/dandelion5.jpg" alt="Dandelion 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion6" alt="Dandelion 6">
+                    <img src="static/dandelion6.jpg" alt="Dandelion 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -504,27 +501,27 @@
             <h2 class="category-title">Lotus</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lotus1" alt="Lotus 1">
+                    <img src="static/lotus1.jpg" alt="Lotus 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lotus2" alt="Lotus 2">
+                    <img src="static/lotus2.jpg" alt="Lotus 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lotus3" alt="Lotus 3">
+                    <img src="static/lotus3.jpg" alt="Lotus 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lotus4" alt="Lotus 4">
+                    <img src="static/lotus4.jpg" alt="Lotus 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lotus5" alt="Lotus 5">
+                    <img src="static/lotus5.jpg" alt="Lotus 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lotus6" alt="Lotus 6">
+                    <img src="static/lotus6.jpg" alt="Lotus 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -534,27 +531,27 @@
             <h2 class="category-title">Lilies</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lily1" alt="Lily 1">
+                    <img src="static/lily1.webp" alt="Lily 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lily2" alt="Lily 2">
+                    <img src="static/lily2.jpg" alt="Lily 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lily3" alt="Lily 3">
+                    <img src="static/lily3.jpg" alt="Lily 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lily4" alt="Lily 4">
+                    <img src="static/lily4.webp" alt="Lily 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lily5" alt="Lily 5">
+                    <img src="static/lily5.webp" alt="Lily 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Lily6" alt="Lily 6">
+                    <img src="static/lily6.jpg" alt="Lily 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
@@ -564,27 +561,27 @@
             <h2 class="category-title">Sakuras</h2>
             <div class="image-grid">
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sakura1" alt="Sakura 1">
+                    <img src="static/sakura1.jpg" alt="Sakura 1">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sakura2" alt="Sakura 2">
+                    <img src="static/sakura2.jpg" alt="Sakura 2">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sakura3" alt="Sakura 3">
+                    <img src="static/sakura3.jpg" alt="Sakura 3">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sakura4" alt="Sakura 4">
+                    <img src="static/sakura4.jpg" alt="Sakura 4">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sakura5" alt="Sakura 5">
+                    <img src="static/sakura5.jpg" alt="Sakura 5">
                     <div class="watercolor-overlay"></div>
                 </div>
                 <div class="image-card">
-                    <img src="/placeholder.svg?height=150&width=150&text=Sakura6" alt="Sakura 6">
+                    <img src="static/sakura6.jpg" alt="Sakura 6">
                     <div class="watercolor-overlay"></div>
                 </div>
             </div>
