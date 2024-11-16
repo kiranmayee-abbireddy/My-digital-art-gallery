@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiranmayee Abbireddy's Digital Art Gallery</title>
+    <style>
+        :root {
+            --gradient-1: #ffecd2;
+            --gradient-2: #fcb69f;
+            --gradient-3: #ffd1ff;
+            --text-color: #333;
+            --pastel-pink: 255, 182, 193;
+            --pastel-blue: 173, 216, 230;
+            --pastel-green: 144, 238, 144;
+            --pastel-yellow: 255, 255, 224;
+            --pastel-purple: 221, 160, 221;
+            --pastel-peach: 255, 218, 185;
+            --pastel-mint: 152, 255, 152;
+            --pastel-lavender: 230, 230, 250;
+            --pastel-coral: 255, 127, 80;
+            --pastel-cyan: 176, 224, 230;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header, footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: var(--text-color);
+        }
+
+        #hero {
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .inner {
+            --w: 200px;
+            --h: 300px;
+            --translateZ: calc((var(--w) + var(--h)) * 0.6);
+            --rotateX: -15deg;
+            --perspective: 1000px;
+            position: absolute;
+            width: var(--w);
+            height: var(--h);
+            transform-style: preserve-3d;
+            transform: perspective(var(--perspective));
+            animation: rotating 30s linear infinite;
+        }
+
+        @keyframes rotating {
+            from { transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0); }
+            to { transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn); }
+        }
+
+        .card {
+            position: absolute;
+            border: 2px solid rgba(var(--color-card), 0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            inset: 0;
+            transform: rotateY(calc((360deg / 10) * var(--index))) translateZ(var(--translateZ));
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: rotateY(calc((360deg / 10) * var(--index))) translateZ(calc(var(--translateZ) + 30px)) scale(1.1);
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: radial-gradient(
+                circle,
+                rgba(var(--color-card), 0.2) 0%,
+                rgba(var(--color-card), 0.6) 80%,
+                rgba(var(--color-card), 0.9) 100%
+            );
+            transition: transform 0.3s ease;
+        }
+
+        .title {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .title {
+            opacity: 1;
+        }
+
+        #categories {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-container {
+            margin-bottom: 2rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            text-align: center;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .image-card {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            padding: 10px;
+        }
+
+        .image-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                45deg,
+                rgba(var(--pastel-pink), 0.5),
+                rgba(var(--pastel-blue), 0.5),
+                rgba(var(--pastel-green), 0.5),
+                rgba(var(--pastel-yellow), 0.5)
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+        .image-card:hover::before {
+            opacity: 1;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border-radius: 5px;
+        }
+
+        .watercolor-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5"/><feColorMatrix values="0 0 0 0.3 0.7 0 0 0 0.3 0.7 0 0 0 0.3 0.7 0 0 0 0.3 0"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
+            opacity: 0.1;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+            z-index: 3;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            #hero {
+                height: 50vh;
+            }
+            
+            .inner {
+                --w: 150px;
+                --h: 225px;
+            }
+
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kiranmayee Abbireddy's Digital Art Gallery</h1>
+        <p>Water Color Themed Digital Art</p>
+    </header>
+
+    <section id="hero">
+        <div class="wrapper">
+            <div class="inner">
+                <div class="card" style="--index: 0; --color-card: var(--pastel-pink);">
+                    <div class="img"></div>
+                    <h3 class="title">Rose</h3>
+                </div>
+                <div class="card" style="--index: 1; --color-card: var(--pastel-blue);">
+                    <div class="img"></div>
+                    <h3 class="title">Tulips</h3>
+                </div>
+                <div class="card" style="--index: 2; --color-card: var(--pastel-green);">
+                    <div class="img"></div>
+                    <h3 class="title">Birds & Animals</h3>
+                </div>
+                <div class="card" style="--index: 3; --color-card: var(--pastel-yellow);">
+                    <div class="img"></div>
+                    <h3 class="title">Sunflowers</h3>
+                </div>
+                <div class="card" style="--index: 4; --color-card: var(--pastel-purple);">
+                    <div class="img"></div>
+                    <h3 class="title">Lavenders</h3>
+                </div>
+                <div class="card" style="--index: 5; --color-card: var(--pastel-peach);">
+                    <div class="img"></div>
+                    <h3 class="title">Dahlias</h3>
+                </div>
+                <div class="card" style="--index: 6; --color-card: var(--pastel-mint);">
+                    <div class="img"></div>
+                    <h3 class="title">Dandelions</h3>
+                </div>
+                <div class="card" style="--index: 7; --color-card: var(--pastel-lavender);">
+                    <div class="img"></div>
+                    <h3 class="title">Lotus</h3>
+                </div>
+                <div class="card" style="--index: 8; --color-card: var(--pastel-coral);">
+                    <div class="img"></div>
+                    <h3 class="title">Lilies</h3>
+                </div>
+                <div class="card" style="--index: 9; --color-card: var(--pastel-cyan);">
+                    <div class="img"></div>
+                    <h3 class="title">Sakuras</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="categories">
+        <div class="category-container">
+            <h2 class="category-title">Roses</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Rose1" alt="Rose 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Rose2" alt="Rose 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Rose3" alt="Rose 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Rose4" alt="Rose 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Rose5" alt="Rose 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Rose6" alt="Rose 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Tulips</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Tulip1" alt="Tulip 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Tulip2" alt="Tulip 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Tulip3" alt="Tulip 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Tulip4" alt="Tulip 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Tulip5" alt="Tulip 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Tulip6" alt="Tulip 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Birds & Animals</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Bird1" alt="Bird 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Animal1" alt="Animal 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Bird2" alt="Bird 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Animal2" alt="Animal 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Bird3" alt="Bird 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Animal3" alt="Animal 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Sunflowers</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower1" alt="Sunflower 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower2" alt="Sunflower 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower3" alt="Sunflower 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower4" alt="Sunflower 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower5" alt="Sunflower 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sunflower6" alt="Sunflower 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Lavenders</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lavender1" alt="Lavender 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lavender2" alt="Lavender 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lavender3" alt="Lavender 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lavender4" alt="Lavender 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lavender5" alt="Lavender 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lavender6" alt="Lavender 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Dahlias</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia1" alt="Dahlia 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia2" alt="Dahlia 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia3" alt="Dahlia 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia4" alt="Dahlia 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia5" alt="Dahlia 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dahlia6" alt="Dahlia 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Dandelions</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion1" alt="Dandelion 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion2" alt="Dandelion 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion3" alt="Dandelion 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion4" alt="Dandelion 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion5" alt="Dandelion 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Dandelion6" alt="Dandelion 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Lotus</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lotus1" alt="Lotus 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lotus2" alt="Lotus 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lotus3" alt="Lotus 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lotus4" alt="Lotus 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lotus5" alt="Lotus 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lotus6" alt="Lotus 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Lilies</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lily1" alt="Lily 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lily2" alt="Lily 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lily3" alt="Lily 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lily4" alt="Lily 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lily5" alt="Lily 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Lily6" alt="Lily 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <h2 class="category-title">Sakuras</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sakura1" alt="Sakura 1">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sakura2" alt="Sakura 2">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sakura3" alt="Sakura 3">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sakura4" alt="Sakura 4">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sakura5" alt="Sakura 5">
+                    <div class="watercolor-overlay"></div>
+                </div>
+                <div class="image-card">
+                    <img src="/placeholder.svg?height=150&width=150&text=Sakura6" alt="Sakura 6">
+                    <div class="watercolor-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Kiranmayee Abbireddy. All rights reserved.</p>
+    </footer>
+</body>
+</html>
