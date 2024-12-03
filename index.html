@@ -4,233 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiranmayee Abbireddy's Digital Art Gallery</title>
-    <style>
-        :root {
-            --gradient-1: #ffecd2;
-            --gradient-2: #fcb69f;
-            --gradient-3: #ffd1ff;
-            --text-color: #333;
-            --pastel-pink: 255, 182, 193;
-            --pastel-blue: 173, 216, 230;
-            --pastel-green: 144, 238, 144;
-            --pastel-yellow: 255, 255, 224;
-            --pastel-purple: 221, 160, 221;
-            --pastel-peach: 255, 218, 185;
-            --pastel-mint: 152, 255, 152;
-            --pastel-lavender: 230, 230, 250;
-            --pastel-coral: 255, 127, 80;
-            --pastel-cyan: 176, 224, 230;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        header, footer {
-            background-color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 1rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1, h2, h3 {
-            color: var(--text-color);
-        }
-
-        #hero {
-            height: 70vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .wrapper {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .inner {
-            --w: 200px;
-            --h: 300px;
-            --translateZ: calc((var(--w) + var(--h)) * 0.6);
-            --rotateX: -15deg;
-            --perspective: 1000px;
-            position: absolute;
-            width: var(--w);
-            height: var(--h);
-            transform-style: preserve-3d;
-            transform: perspective(var(--perspective));
-            animation: rotating 30s linear infinite;
-        }
-
-        @keyframes rotating {
-            from { transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0); }
-            to { transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn); }
-        }
-
-        .card {
-            position: absolute;
-            border: 2px solid rgba(var(--color-card), 0.8);
-            border-radius: 12px;
-            overflow: hidden;
-            inset: 0;
-            transform: rotateY(calc((360deg / 10) * var(--index))) translateZ(var(--translateZ));
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: rotateY(calc((360deg / 10) * var(--index))) translateZ(calc(var(--translateZ) + 30px)) scale(1.1);
-        }
-
-        .img {
-            width: 50%;
-            height: 50%;
-            object-fit:scale-down;
-            background: radial-gradient(
-                circle,
-                rgba(var(--color-card), 0.2) 0%,
-                rgba(var(--color-card), 0.6) 80%,
-                rgba(var(--color-card), 0.9) 100%
-            );
-            transition: transform 0.3s ease;
-        }
-
-
-        #categories {
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            margin-top:-20px;
-        }
-
-        .category-container {
-            margin-bottom: 2rem;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .category-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-            text-align: center;
-        }
-
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 1rem;
-        }
-
-        .image-card {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            padding: 10px;
-        }
-
-        .image-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                45deg,
-                rgba(var(--pastel-pink), 0.9),
-                rgba(var(--pastel-peach), 0.5),
-                rgba(var(--pastel-green), 0.5),
-                rgba(var(--pastel-yellow), 0.5)
-            );
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-            border-radius: 10px;
-        }
-
-        .image-card:hover::before {
-            opacity: 1;
-        }
-
-        .image-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .image-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            position: relative;
-            z-index: 2;
-            border-radius: 5px;
-        }
-
-        .watercolor-overlay {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><filter id="f"><feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="5"/><feColorMatrix values="0 0 0 0.3 0.7 0 0 0 0.3 0.7 0 0 0 0.3 0.7 0 0 0 0.3 0"/></filter><rect width="100%" height="100%" filter="url(%23f)"/></svg>');
-            opacity: 0.1;
-            mix-blend-mode: overlay;
-            pointer-events: none;
-            z-index: 3;
-            border-radius: 5px;
-        }
-
-        @media (max-width: 768px) {
-            #hero {
-                height: 50vh;
-            }
-            
-            .inner {
-                --w: 150px;
-                --h: 225px;
-            }
-
-            .image-grid {
-                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-            }
-        }
-        @media (max-width: 1200px) {
-            .image-grid {
-                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            }
-        }
-        @media (max-width: 1449px) {
-            .image-grid {
-                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body>
     <header>
@@ -243,43 +17,43 @@
         <div class="wrapper">
             <div class="inner">
                 <div class="card" style="--index: 0; --color-card: var(--pastel-pink);">
-                    <div class="img"><img src="static/1.jpg"></div>
+                    <div class="img"><img src="static/1.jpg" alt="Image 1"></div>
                     
                 </div>
                 <div class="card" style="--index: 1; --color-card: var(--pastel-blue);">
-                    <div class="img"><img src="static/2.jpg"></div>
+                    <div class="img"><img src="static/2.jpg" alt="Image 2"></div>
                     
                 </div>
                 <div class="card" style="--index: 2; --color-card: var(--pastel-green);">
-                    <div class="img"><img src="static/3.jpg"></div>
+                    <div class="img"><img src="static/3.jpg" alt="Image 3"></div>
                   
                 </div>
                 <div class="card" style="--index: 3; --color-card: var(--pastel-yellow);">
-                    <div class="img"><img src="static/4.jpg"></div>
+                    <div class="img"><img src="static/4.jpg" alt="Image 4"></div>
                    
                 </div>
                 <div class="card" style="--index: 4; --color-card: var(--pastel-purple);">
-                    <div class="img"><img src="static/5.jpg"></div>
+                    <div class="img"><img src="static/5.jpg" alt="Image 5"></div>
                    
                 </div>
                 <div class="card" style="--index: 5; --color-card: var(--pastel-peach);">
-                    <div class="img"><img src="static/6.jpg"></div>
+                    <div class="img"><img src="static/6.jpg" alt="Image 6"></div>
                     
                 </div>
                 <div class="card" style="--index: 6; --color-card: var(--pastel-mint);">
-                    <div class="img"><img src="static/7.jpg"></div>
+                    <div class="img"><img src="static/7.jpg" alt="Image 7"></div>
                     
                 </div>
                 <div class="card" style="--index: 7; --color-card: var(--pastel-lavender);">
-                    <div class="img"><img src="static/8.jpg"></div>
+                    <div class="img"><img src="static/8.jpg" alt="Image 8"></div>
                     
                 </div>
                 <div class="card" style="--index: 8; --color-card: var(--pastel-coral);">
-                    <div class="img"><img src="static/9.jpg"></div>
+                    <div class="img"><img src="static/9.jpg" alt="Image 9"></div>
                     
                 </div>
                 <div class="card" style="--index: 9; --color-card: var(--pastel-cyan);">
-                    <div class="img"><img src="static/10.jpg"></div>
+                    <div class="img"><img src="static/10.jpg" alt="Image 10"></div>
                     
                 </div>
             </div>
@@ -594,5 +368,13 @@
     <footer>
         <p>&copy; 2023 Kiranmayee Abbireddy. All rights reserved.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="static/js/animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="static/js/cursor3d.js"></script>
 </body>
 </html>
